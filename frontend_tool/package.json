@@ -1,0 +1,27 @@
+{
+  "name": "SKIYAKI FRONTENT TOOL",
+  "version": "1.0.0",
+  "description": "This program is made for frontend development",
+  "main": "index.js",
+  "directories": {
+    "doc": "doc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/skiyaki/skiyaki.git"
+  },
+  "author": "Mizuki Yamada",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yamadamizuki/bug/issues",
+    "email": "yamada2@skiyaki.com"
+  },
+  "homepage": "https://github.com/skiyaki/skiyaki",
+  "devDependencies": {
+    "sass-lint": "^1.10.2",
+    "watch": "^1.0.1"
+  },
+  "scripts": {
+    "test": "node_modules/sample/app.js"
+  }
+}
