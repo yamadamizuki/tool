@@ -20,11 +20,17 @@ fi
 # 実行時の Dir
 CURRENT_DIR=$(pwd)
 
-# nodeがあるか確認する
-NODE_PRESENT=$(white node)
-if [ -z NODE_PRESENT ]; then
-	read -p ""
+# brewがあるか確認する
+BREW_PRESENT=$(which brew)
+if [ -z BREW_PRESENT ]; then
+	/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+fi
 
+# nodeがあるか確認する
+NODE_PRESENT=$(which node)
+if [ -z NODE_PRESENT ]; then
+	brew install node
+fi
 
 # ~/に一旦移動する
 cd ~/
