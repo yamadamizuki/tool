@@ -20,12 +20,23 @@ fi
 # 実行時の Dir
 CURRENT_DIR=$(pwd)
 
+# brewがあるか確認する
+BREW_PRESENT=$(which brew)
+if [ -z BREW_PRESENT ]; then
+	/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+fi
 
+# nodeがあるか確認する
+NODE_PRESENT=$(which node)
+if [ -z NODE_PRESENT ]; then
+	brew install node
+fi
 
+# ~/に一旦移動する
+cd ~/
+
+# ignoreファイルを作成する
 if [ -z "$IGNORE_FILENAME" ]; then
-	# ~/に一旦移動する
-	cd ~/
-	# ignoreファイルを作成する
 	read -p "ignoreファイルを作成いたします。ファイル名を英字で入力してください >" IGNORE_FILENAME
 	echo "IGNORE_FILENAME=${IGNORE_FILENAME}" >> ${CURRENT}/frontend_developer.ini
 	touch ${IGNORE_FILENAME}
@@ -46,12 +57,12 @@ cd ${SKIYAKI_DIR}
 
 # configにexcludesfileの設定があるか確認する
 EX_PRESENT=$(git config --local core.excludesfile)
-if [ -z ${EX_PRESENT} ] || [echo ${EX_PRESENT} | grep "${IGNORE_FILENAME}"];then
-	d ${IGNORE_FILENAME}
+if [ -z ${EX_PRESENT} ] || [`echo ${EX_PRESENT} | grep ${IGNORE_FILENAME}`];then
 	git config --local core.excludesfile "~/${IGNORE_FILENAME}"
 fi
 
-
+curl -O https://raw.githubusercontent.com/yamadamizuki/tool/master/frontend_tool/package.json
+npm install
 
 
 
@@ -59,6 +70,7 @@ fi
 d ${SKIYAKI_DIR}
 d ${IGNORE_FILENAME}
 d ${EX_PRESENT}
+d ${IGNORE_FILENAME}
 
 
 
